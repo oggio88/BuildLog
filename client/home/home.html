@@ -1,0 +1,92 @@
+<template name="homepage">
+    <div class="jumbotron">
+        <h1>GFT Builders Team</h1>
+        <p>C'è sempre tempo per un'altra build..</p>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b>Build di oggi {{formatDay today}}</b>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                </thead>
+                <tbody>
+                    {{#each days}}
+                    {{> buildToday}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <!--div class="panel-footer">
+        </div-->
+    </div>
+</template>
+
+
+<template name="buildToday">
+    <tr>
+        <th>
+            Project
+        </th>
+        <th>
+            Package
+        </th>
+        <th>
+            SVN Revision
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            Ambiente di collaudo
+        </th>
+        <th>
+            Data collaudo
+        </th>
+        <th>
+            Nome TAG
+        </th>
+        <th>
+            Freeze
+        </th>
+        <th>
+            Produzione
+        </th>
+    </tr>
+    {{#each serverBuild}}
+        {{> buildRowToday}}
+    {{/each}}
+</template>
+
+<template name="buildRowToday">
+    <tr databaseID="{{_id}}" class="server-build">
+        <td>
+            {{project}}
+        </td>
+        <td>
+            {{package}}
+        </td>
+        <td>
+            {{revision}}
+        </td>
+        <td>
+            {{formatTime date}}
+        </td>
+        <td>
+            {{ambiente_collaudo}}
+        </td>
+        <td>
+            {{formatDay data_collaudo}}
+        </td>
+        <td>
+            {{tag_name}}
+        </td>
+        <td>
+            {{freeze}}
+        </td>
+        <td>
+            {{formatDay produzione}}
+        </td>
+    </tr>
+</template>

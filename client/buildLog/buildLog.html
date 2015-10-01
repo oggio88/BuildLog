@@ -1,0 +1,136 @@
+<template name="buildLog">
+    <table class="table table-bordered build-table" style="border: none;">
+        <thead>
+        </thead>
+
+        <tbody>
+            {{#each days}}
+            {{> buildDay}}
+            {{/each}}
+        </tbody>
+    </table>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <form class="navbar-form" role="form">
+                        <div class="form-group">
+                            <label for="data_inizio">Data inizio:</label>
+                             <div class="input-group datetimepicker">
+                                <input name="date" id="data_inizio" class="set-due-date form-control" type="text" />
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="data_inizio">Data fine:</label>
+                             <div class="input-group datetimepicker">
+                                <input name="date" id="data_fine" class="set-due-date form-control" type="text" />
+                                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Project</label>
+                              <select class="selectpicker" id="project">
+                                  <option>All</option>
+                                  {{#each projects}}
+                                    <option>{{.}}</option>
+                                  {{/each}}
+                              </select>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            {{#if userIsAdmin}}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{pathFor 'serverBuild'}}" id="addBuildButton"><span class="glyphicon glyphicon-plus"></span> Add build</a></li>
+                <li><a href="#" id="editButton"><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
+            </ul>
+            {{/if}}
+        </div>
+    </nav>
+</template>
+
+<template name="buildDay">
+    <tr>
+        <td style="border: none; background: none; text-align: center;">{{#if editMode}}Remove{{/if}}</td>
+        <td colspan="9" class="info" style="font-weight: bold; text-align: center;">
+            {{formatDay day}}
+        </td>
+    </tr>
+    <tr>
+        <th style="border: none; background: none;">
+        </th>
+        <th>
+            Project
+        </th>
+        <th>
+            Package
+        </th>
+        <th>
+            SVN Revision
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            Ambiente di collaudo
+        </th>
+        <th>
+            Data collaudo
+        </th>
+        <th>
+            Nome TAG
+        </th>
+        <th>
+            Freeze
+        </th>
+        <th>
+            Produzione
+        </th>
+    </tr>
+    {{#each serverBuild}}
+        {{> buildRow}}
+    {{/each}}
+    <div style="margin-bottom: 30px;"></div>
+</template>
+
+<template name="buildRow">
+    <tr databaseID="{{_id}}" class="server-build">
+        <td class="control-column" style="border: none; background: none;">
+            {{#if editMode}}
+            <span class="glyphicon glyphicon-remove"></span>
+            {{/if}}
+        </td>
+        <td>
+            {{project}}
+        </td>
+        <td>
+            {{package}}
+        </td>
+        <td>
+            {{revision}}
+        </td>
+        <td>
+            {{formatTime date}}
+        </td>
+        <td>
+            {{ambiente_collaudo}}
+        </td>
+        <td>
+            {{formatDay data_collaudo}}
+        </td>
+        <td>
+            {{tag_name}}
+        </td>
+        <td>
+            {{freeze}}
+        </td>
+        <td>
+            {{formatDay produzione}}
+        </td>
+    </tr>
+</template>

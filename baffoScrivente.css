@@ -1,0 +1,18 @@
+/* CSS declarations go here */
+
+
+div.container-fluid table.build-table tbody tr:hover td.control-column {
+    visibility: visible;
+}
+
+
+
+div.container-fluid table.build-table tbody tr td.control-column{
+    visibility: hidden;
+    text-align: center;
+    background-color: none;
+}
+
+div.container-fluid table.build-table tbody tr:hover.server-build td{
+    background-color: linen;
+}
