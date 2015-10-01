@@ -13,6 +13,14 @@ Template.buildLog.helpers({
         var build = ServerBuild.find().fetch();
         var distinctData = _.uniq(build, false, function(d) {return d.project});
         return _.pluck(distinctData, "project");
+    },
+    
+    branches: function()
+    {
+        var build = ServerBuild.find().fetch();
+        var distinctData = _.uniq(build, false, function(d) {return d.branch});
+        var res = _.pluck(distinctData, "branch");
+        return res;
     }
 });
 
@@ -22,7 +30,10 @@ Template.buildDay.helpers({
 });
 
 Template.buildRow.helpers({
-    editMode: function(){return Session.get('editMode');},
+    integrazione2: function()
+    {
+        return Template.instance().data.integrazione === '2';
+    },
 });
 
 //Template.buildLog.created = function() {
@@ -37,7 +48,7 @@ Template.buildLog.onRendered(function() {
     this.$('.datetimepicker').datetimepicker({locale: 'it'});
 });
 
-Template.buildLog.created = function () {
+Template.buildLog.created = function() {
     this.searchQuery = new ReactiveVar({});
 };
 
@@ -103,6 +114,22 @@ Template.buildLog.events({
         else
         {
             delete searchQuery.project;
+        }
+        Template.instance().searchQuery.set(searchQuery);
+    },
+    
+    'change select#branch': function(event, template)
+    {
+        var template = Template.instance();
+        var searchQuery = template.searchQuery.get();
+        var branch = template.$('#branch').val();
+        if(branch !== 'All')
+        {
+            searchQuery.branch = branch;
+        }
+        else
+        {
+            delete searchQuery.branch;
         }
         Template.instance().searchQuery.set(searchQuery);
     }

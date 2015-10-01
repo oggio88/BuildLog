@@ -41,6 +41,15 @@
                                   {{/each}}
                               </select>
                         </div>
+                        <div class="form-group">
+                            <label for="branch">Branch</label>
+                              <select class="selectpicker" id="branch">
+                                  <option>All</option>
+                                  {{#each branches}}
+                                    <option>{{.}}</option>
+                                  {{/each}}
+                              </select>
+                        </div>
                     </form>
                 </li>
             </ul>
@@ -57,7 +66,7 @@
 <template name="buildDay">
     <tr>
         <td style="border: none; background: none; text-align: center;">{{#if editMode}}Remove{{/if}}</td>
-        <td colspan="9" class="info" style="font-weight: bold; text-align: center;">
+        <td colspan="11" class="info" style="font-weight: bold; text-align: center;">
             {{formatDay day}}
         </td>
     </tr>
@@ -71,10 +80,16 @@
             Package
         </th>
         <th>
+            Branch
+        </th>
+        <th>
             SVN Revision
         </th>
         <th>
             Time
+        </th>
+        <th>
+            Ambiente di integrazione
         </th>
         <th>
             Ambiente di collaudo
@@ -99,7 +114,7 @@
 </template>
 
 <template name="buildRow">
-    <tr databaseID="{{_id}}" class="server-build">
+    <tr databaseID="{{_id}}" class="server-build {{#if integrazione2}}integrazione-2{{/if}}">
         <td class="control-column" style="border: none; background: none;">
             {{#if editMode}}
             <span class="glyphicon glyphicon-remove"></span>
@@ -112,10 +127,16 @@
             {{package}}
         </td>
         <td>
+            {{branch}}
+        </td>
+        <td>
             {{revision}}
         </td>
         <td>
             {{formatTime date}}
+        </td>
+        <td>
+            {{integrazione}}
         </td>
         <td>
             {{ambiente_collaudo}}

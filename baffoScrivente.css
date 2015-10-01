@@ -13,6 +13,11 @@ div.container-fluid table.build-table tbody tr td.control-column{
     background-color: none;
 }
 
+/*
 div.container-fluid table.build-table tbody tr:hover.server-build td{
+    background-color: linen;
+}*/
+
+table.build-table tbody tr.server-build.integrazione-2 td{
     background-color: linen;
 }
