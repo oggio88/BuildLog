@@ -91,7 +91,7 @@ Template.buildLog.events({
         Template.instance().searchQuery.set(searchQuery);
     },
     
-    'blur select#project': function(event, template)
+    'change select#project': function(event, template)
     {
         var template = Template.instance();
         var searchQuery = template.searchQuery.get();
