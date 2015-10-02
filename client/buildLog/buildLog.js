@@ -30,6 +30,8 @@ Template.buildDay.helpers({
 });
 
 Template.buildRow.helpers({
+    editMode: function(){return Session.get('editMode');},
+    
     integrazione2: function()
     {
         return Template.instance().data.integrazione === '2';

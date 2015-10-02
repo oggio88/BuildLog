@@ -19,7 +19,7 @@ Template.newBuild.events({
     {
         event.preventDefault();
         var build = template.data;
-        var properties= ['date', 'project','package', 'revision', 'data_collaudo', 'produzione', 'tag_name', 'freeze', 'ambiente_collaudo', 'data_collaudo'];
+        var properties= ['date', 'project','package', 'branch', 'revision', 'data_collaudo', 'produzione', 'tag_name', 'freeze', 'ambiente_collaudo', 'data_collaudo'];
         
         properties.forEach(function(p){
             build[p] = $(event.target).find('[name=' + p + ']').val();
@@ -44,7 +44,16 @@ Template.newBuild.events({
         });
         
         var id = build._id;
-        delete build._id;
+        if(build._id)
+        {
+            delete build._id;
+        }
+        else
+        {
+            build._id = new Meteor.Collection.ObjectID();
+        }
+        var id = build._id;
+
         Meteor.call('buildUpsert', Meteor.userId(), id, build);
         //ServerBuild.update({_id: id},{$set: build}, {upsert: true});
         Router.go('buildLog');

@@ -23,13 +23,19 @@
         </div>
         
         <div class="form-group">
+            <label for="branch">Branch</label>
+            <input type="text" name="branch" class="form-control" id="branch"  
+                   value="{{branch}}" {{readOnly}}>
+        </div>
+        
+        <div class="form-group">
             <label for="revision">SVN Revision</label>
             <input type="number" name="revision" class="form-control" id="revision"  
                    value="{{revision}}" {{readOnly}}>
         </div>
         <div class="form-group">
             <label for="ambiente_collaudo">Ambiente di collaudo</label>
-            <input type="text" name="collaudo_env" class="form-control" id="ambiente_collaudo" 
+            <input type="text" name="ambiente_collaudo" class="form-control" id="ambiente_collaudo" 
                    value="{{ambiente_collaudo}}" {{readOnly}}>
         </div>
         
