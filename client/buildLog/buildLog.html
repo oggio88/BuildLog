@@ -1,5 +1,5 @@
 <template name="buildLog">
-    <table class="table table-bordered build-table" style="border: none;">
+    <table class="table table-bordered build-table" style="border: none; margin-bottom: 40px;">
         <thead>
         </thead>
 
@@ -34,12 +34,12 @@
                         </div>
                         <div class="form-group">
                             <label for="project">Project</label>
-                              <select class="selectpicker" id="project">
+                            <select class="selectpicker" id="project">
                                   <option>All</option>
                                   {{#each projects}}
                                     <option>{{.}}</option>
                                   {{/each}}
-                              </select>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="branch">Branch</label>
@@ -56,7 +56,7 @@
             {{#if userIsAdmin}}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{pathFor 'serverBuild'}}" id="addBuildButton"><span class="glyphicon glyphicon-plus"></span> Add build</a></li>
-                <li><a href="#" id="editButton"><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
+                <li><a id="editButton"><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
             </ul>
             {{/if}}
         </div>

@@ -90,8 +90,11 @@ Template.buildLog.events({
     {
         var template = Template.instance();
         var searchQuery = template.searchQuery.get();
-        var data_inizio = moment(template.$('#data_inizio').val(), 'DD/MM/YYYY H:mm');
+        var dateText = template.$('#data_inizio').val();
+        var data_inizio = moment(dateText, 'DD/MM/YYYY H:mm');
+        
         data_inizio.isValid() && (searchQuery.data_inizio = data_inizio.toDate());
+        dateText.length === 0 && delete searchQuery.data_inizio;
         Template.instance().searchQuery.set(searchQuery);
     },
     
@@ -99,8 +102,11 @@ Template.buildLog.events({
     {
         var template = Template.instance();
         var searchQuery = template.searchQuery.get();
+        var dateText = template.$('#data_fine').val();
         var data_fine = moment(template.$('#data_fine').val(), 'DD/MM/YYYY H:mm');
+        
         data_fine.isValid() && (searchQuery.data_fine = data_fine.toDate());
+        dateText.length === 0 && delete searchQuery.data_fine;
         Template.instance().searchQuery.set(searchQuery);
     },
     
